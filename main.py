@@ -3,6 +3,7 @@ import datetime
 from google.oauth2 import service_account
 from google.cloud import bigquery
 from googleapiclient.discovery import build
+import functions_framework
 import settings
 
 # Global variables
@@ -12,7 +13,7 @@ search_types = ['web','image','video','news','googleNews','discover']
 
 # Create dates list or return today's date
 def set_date_range(payload):
-    if payload['start_date'] and payload['end_date']:
+    if ('start_date'in payload) and ('end_date' in payload):
         print('Creating date list...')
         start_date = datetime.date.fromisoformat(payload['start_date'])
         end_date = datetime.date.fromisoformat(payload['end_date'])
@@ -94,9 +95,12 @@ def insert_into_bigquery(fetched_data):
     table_nm = client.get_table(table)
     client.insert_rows(table_nm, fetched_data)
 
+@functions_framework.http
 def main(request):
     """
     Função de insert de dados do Search Console em tabelas do BigQuery.
+    Payload recebe valores de start_date e end_date caso seja necessário trabalho em lotes.
+    Ausência de valores resulta em uma atualização apenas dos dados recentes (últimos 2 dias).
     TO-DO: Escrever documentação técnica.
     """
     payload = request.get_json()
