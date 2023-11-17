@@ -1,14 +1,15 @@
 import os
 import datetime
+import settings
+
 from google.oauth2 import service_account
 from google.cloud import bigquery
 from googleapiclient.discovery import build
 import functions_framework
-import settings
 
 # Global variables
 key_file = settings.key_file
-site_url = os.environ.get("URL","Could not retreive url.")
+site_url = settings.url # use os.environ.get(var,msg) for cloud environment
 search_types = ['web','image','video','news','googleNews','discover']
 
 # Create dates list or return today's date
