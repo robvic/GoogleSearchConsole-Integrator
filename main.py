@@ -89,10 +89,10 @@ def format_data(fetched_data):
 
 def insert_into_bigquery(fetched_data):
     client = bigquery.Client()
-    datasetName = os.environ.get("DATASET", "Could not retreive dataset name.")
-    dataset = client.dataset(datasetName)
-    tableName = os.environ.get("TABLE", "Could not retreive table name.")
-    table = dataset.table(tableName)
+    dataset_name = os.environ.get("DATASET", "Could not retreive dataset name.")
+    dataset = client.dataset(dataset_name)
+    table_name = os.environ.get("TABLE", "Could not retreive table name.")
+    table = dataset.table(table_name)
     table_nm = client.get_table(table)
     client.insert_rows(table_nm, fetched_data)
 
