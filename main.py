@@ -51,7 +51,7 @@ def fetch_api_data(site_url, search_type, start_date):
         "endDate":start_date,
         "dimensions":dimmensions,
         "type":search_type,
-        "rowLimit":int(os.environ.get("ROWS","Could not set row limit.")),
+        "rowLimit": int(settings.rows) # use os.environ.get(var,msg) for cloud environment
         "startRow":0
     }
     service = connect_to_searchconsole()
@@ -89,9 +89,9 @@ def format_data(fetched_data):
 
 def insert_into_bigquery(fetched_data):
     client = bigquery.Client()
-    dataset_name = os.environ.get("DATASET", "Could not retreive dataset name.")
+    dataset_name = settings.dataset # use os.environ.get(var,msg) for cloud environment
     dataset = client.dataset(dataset_name)
-    table_name = os.environ.get("TABLE", "Could not retreive table name.")
+    table_name = settings.table # use os.environ.get(var,msg) for cloud environment
     table = dataset.table(table_name)
     table_nm = client.get_table(table)
     client.insert_rows(table_nm, fetched_data)
