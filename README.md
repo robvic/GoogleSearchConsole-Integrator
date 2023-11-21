@@ -1,4 +1,4 @@
-# google-search-console-integrator
+# Google Search Console Integrator
 ## How to Use
 
 This code can be run both on local machine or GCP serverless service. Adjustments must be made on settings variables accordingly.
