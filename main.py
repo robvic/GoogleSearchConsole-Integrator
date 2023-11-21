@@ -48,7 +48,7 @@ def fetch_api_data(site_url, search_type, start_date):
         dimmensions = ["country","page","device","query"]
     payload = {
         "startDate":start_date,
-        "endDate":(datetime.date.fromisoformat(start_date)+datetime.timedelta(days=1)).isoformat(),
+        "endDate":start_date,
         "dimensions":dimmensions,
         "type":search_type,
         "rowLimit":int(os.environ.get("ROWS","Could not set row limit.")),
