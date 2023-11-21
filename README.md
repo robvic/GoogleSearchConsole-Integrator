@@ -12,6 +12,7 @@ To start sending events, use curl or Postman whith the required payload along wi
 
 ## API
 To query the API, the following endpoint is used: http://localhost:8080/
+
 The payload used is simply the stard and end date.
 
 For further usage, check the following docs:
