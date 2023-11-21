@@ -11,9 +11,7 @@ To run locally, the package functions-framework should be installed via pip. At 
 To start sending events, use curl or Postman whith the required payload along with the endpoint request.
 
 ## API
-To query the API, the following endpoint is used:
-  https://www.googleapis.com/webmasters/v3/sites/DOMAIN_OR_WEBADDRESS/searchAnalytics/query
-
+To query the API, the following endpoint is used: http://localhost:8080/
 The payload used is simply the stard and end date.
 
 For further usage, check the following docs:
